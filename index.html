@@ -1,0 +1,455 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<meta name="theme-color" content="#fff8f2">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
+<title>For My Sweet Little Mushroom 🍄💕</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400;1,600&family=Nunito:wght@300;400;600;700&family=Dancing+Script:wght@600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --rose:       #d4607a;
+    --soft-rose:  #f2a0b5;
+    --blush:      #fce8ee;
+    --sage:       #9bbf9e;
+    --warm-cream: #fff8f2;
+    --text-dark:  #2e1025;
+    --text-mid:   #7a4060;
+    --text-light: #b890a0;
+    --gold:       #e8c06a;
+    --lavender:   #c2a8e0;
+    --deep-bg:    #1e0e18;
+  }
+
+  *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
+
+  body {
+    font-family: 'Nunito', sans-serif;
+    background: var(--warm-cream);
+    color: var(--text-dark);
+    overflow-x: hidden;
+    -webkit-font-smoothing: antialiased;
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  @media (pointer: fine) {
+    body { cursor: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='32' height='32'%3E%3Ctext y='26' font-size='24'%3E🍄%3C/text%3E%3C/svg%3E"), auto; }
+  }
+
+  /* ── FLOATING PETALS ── */
+  #floaties { position: fixed; inset: 0; pointer-events: none; z-index: 0; overflow: hidden; }
+  .floatie { position: absolute; top: -80px; opacity: 0; animation: floatUp linear infinite; will-change: transform; }
+  @keyframes floatUp {
+    0%   { opacity: 0; transform: translateY(0) rotate(0deg) scale(0.7); }
+    8%   { opacity: 0.45; }
+    88%  { opacity: 0.3; }
+    100% { opacity: 0; transform: translateY(110vh) rotate(400deg) scale(1); }
+  }
+
+  /* ── HERO ── */
+  .hero {
+    min-height: 100vh;
+    min-height: 100dvh;
+    display: flex; flex-direction: column;
+    align-items: center; justify-content: center;
+    text-align: center;
+    padding: max(4rem, env(safe-area-inset-top, 4rem)) 1.5rem 3rem;
+    position: relative; z-index: 1;
+    background:
+      radial-gradient(ellipse at 65% 25%, #ffe4f0 0%, transparent 55%),
+      radial-gradient(ellipse at 15% 85%, #e8dff5 0%, transparent 50%),
+      radial-gradient(ellipse at 50% 60%, #f5ffe8 0%, transparent 45%),
+      #fff8f2;
+    overflow: hidden;
+  }
+  .hero::before {
+    content: '';
+    position: absolute;
+    width: min(700px, 90vw); height: min(700px, 90vw);
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(212,96,122,0.07) 0%, transparent 70%);
+    top: 50%; left: 50%; transform: translate(-50%,-50%);
+    animation: glowPulse 5s ease-in-out infinite;
+  }
+  @keyframes glowPulse { 0%,100%{transform:translate(-50%,-50%) scale(1);} 50%{transform:translate(-50%,-50%) scale(1.18);} }
+
+  .mushroom-icon {
+    font-size: clamp(3.8rem, 14vw, 5.5rem);
+    display: block;
+    animation: mushBob 3.5s ease-in-out infinite, fadeUp 0.9s ease both;
+    filter: drop-shadow(0 12px 28px rgba(212,96,122,0.3));
+    cursor: pointer; margin-bottom: 1.2rem;
+    user-select: none; -webkit-user-select: none;
+  }
+  @keyframes mushBob { 0%,100%{transform:translateY(0) rotate(-3deg);} 50%{transform:translateY(-12px) rotate(3deg);} }
+
+  .hero-label {
+    font-size: clamp(0.58rem, 2.2vw, 0.7rem);
+    font-weight: 700; letter-spacing: 0.22em; text-transform: uppercase;
+    color: white;
+    background: linear-gradient(90deg, var(--rose), var(--lavender), var(--sage));
+    padding: 0.4rem 1rem; border-radius: 100px;
+    margin-bottom: 1.3rem; display: inline-block;
+    animation: fadeUp 0.8s 0.15s ease both;
+    box-shadow: 0 4px 22px rgba(212,96,122,0.35);
+  }
+
+  .hero h1 {
+    font-family: 'Dancing Script', cursive;
+    font-size: clamp(2rem, 8vw, 7rem);
+    font-weight: 700; line-height: 1.1;
+    background: linear-gradient(140deg, #b8354f, #9b59b6, #4a9b6f, #c4a882);
+    background-size: 300%;
+    -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+    animation: fadeUp 0.8s 0.25s ease both, colorFlow 8s linear infinite;
+    margin-bottom: 0.5rem; padding: 0 0.5rem;
+  }
+  @keyframes colorFlow { 0%,100%{background-position:0%;} 50%{background-position:100%;} }
+
+  .hero-name-tag {
+    display: inline-flex; align-items: center; gap: 0.4rem;
+    background: white; border: 2px solid rgba(212,96,122,0.2); border-radius: 100px;
+    padding: 0.45rem 1.1rem; margin: 0.5rem 0 1.4rem;
+    box-shadow: 0 4px 20px rgba(212,96,122,0.1);
+    animation: fadeUp 0.8s 0.35s ease both;
+  }
+  .hero-name-tag .mush { font-size: clamp(1rem, 4vw, 1.3rem); }
+  .hero-name-tag .name-text {
+    font-family: 'Dancing Script', cursive;
+    font-size: clamp(1.1rem, 5vw, 1.4rem); color: var(--rose);
+  }
+
+  .hero-sub {
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic; font-weight: 300;
+    font-size: clamp(1rem, 3.8vw, 1.4rem);
+    color: var(--text-mid); max-width: min(480px, 90vw);
+    line-height: 1.8; animation: fadeUp 0.8s 0.45s ease both;
+    margin-bottom: 2rem;
+  }
+
+  .scroll-cue {
+    animation: fadeUp 0.8s 0.7s ease both, nudge 2.5s 1.5s ease-in-out infinite;
+    font-size: 1.8rem; display: block;
+  }
+  @keyframes nudge { 0%,100%{transform:translateY(0);} 55%{transform:translateY(8px);} }
+  @keyframes fadeUp { from{opacity:0;transform:translateY(28px);} to{opacity:1;transform:translateY(0);} }
+
+  /* ── SECTIONS ── */
+  section { position: relative; z-index: 1; }
+  .s-inner { max-width: 860px; margin: 0 auto; padding: 3.5rem 1.2rem; }
+  @media (min-width: 600px) { .s-inner { padding: 5rem 2rem; } }
+
+  .s-eyebrow {
+    font-size: 0.68rem; font-weight: 700; letter-spacing: 0.24em;
+    text-transform: uppercase; display: block; margin-bottom: 0.7rem;
+  }
+  .s-title {
+    font-family: 'Dancing Script', cursive;
+    font-size: clamp(1.7rem, 6vw, 3.4rem); font-weight: 700;
+    line-height: 1.2; margin-bottom: 1.2rem; color: var(--text-dark);
+  }
+  .s-body {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(1rem, 3.5vw, 1.22rem);
+    line-height: 1.95; color: var(--text-mid); font-weight: 300;
+  }
+
+  /* ── GRATITUDE ── */
+  .gratitude { background: linear-gradient(160deg, #fff3f7 0%, #f4f0ff 100%); }
+  .gratitude .s-eyebrow { color: var(--rose); }
+
+  .three-pillars {
+    margin-top: 2.5rem; display: grid;
+    grid-template-columns: 1fr; gap: 1.1rem;
+  }
+  @media (min-width: 500px) { .three-pillars { grid-template-columns: repeat(2, 1fr); } }
+  @media (min-width: 780px) { .three-pillars { grid-template-columns: repeat(3, 1fr); } }
+
+  .pillar {
+    background: white; border-radius: 22px; padding: 1.6rem 1.3rem;
+    border: 1.5px solid rgba(212,96,122,0.1);
+    box-shadow: 0 6px 28px rgba(212,96,122,0.07);
+    position: relative; overflow: hidden;
+    transition: transform 0.35s ease, box-shadow 0.35s ease;
+  }
+  .pillar::after {
+    content: ''; position: absolute; bottom: 0; left: 0; right: 0; height: 4px;
+    border-radius: 0 0 22px 22px;
+    transform: scaleX(0); transform-origin: left; transition: transform 0.4s ease;
+  }
+  .pillar:nth-child(1)::after { background: linear-gradient(90deg, var(--rose), #e8a0b0); }
+  .pillar:nth-child(2)::after { background: linear-gradient(90deg, #9b59b6, var(--lavender)); }
+  .pillar:nth-child(3)::after { background: linear-gradient(90deg, var(--sage), #6aab70); }
+  @media (hover: hover) {
+    .pillar:hover { transform: translateY(-8px); box-shadow: 0 20px 48px rgba(212,96,122,0.16); }
+    .pillar:hover::after { transform: scaleX(1); }
+  }
+
+  .pillar-icon { font-size: 2.4rem; display: block; margin-bottom: 0.9rem; }
+  .pillar h3 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(1rem, 3.5vw, 1.2rem); font-weight: 600;
+    color: var(--text-dark); margin-bottom: 0.5rem;
+  }
+  .pillar p { font-size: clamp(0.82rem, 3vw, 0.88rem); color: var(--text-light); line-height: 1.75; }
+
+  /* ── DEEP NOTE ── */
+  .deep-note {
+    margin-top: 2.5rem;
+    background: linear-gradient(135deg, #fce8ee, #ede4ff, #e8f5e9);
+    border-radius: 26px; padding: 2rem 1.5rem;
+    border: 1.5px solid rgba(212,96,122,0.15);
+    position: relative; overflow: hidden;
+  }
+  .deep-note::before {
+    content: '"'; position: absolute; top: -20px; left: 10px;
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 9rem; line-height: 1;
+    color: rgba(212,96,122,0.09); pointer-events: none;
+  }
+  .deep-note p {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(1rem, 3.5vw, 1.28rem);
+    line-height: 2; font-style: italic; font-weight: 300;
+    color: var(--text-mid); position: relative; z-index: 1;
+  }
+  .deep-note .note-sign {
+    display: block; margin-top: 1rem;
+    font-family: 'Dancing Script', cursive;
+    font-size: clamp(1.05rem, 4vw, 1.5rem);
+    color: var(--rose); text-align: right;
+  }
+
+  /* ── APOLOGY ── */
+  .apology { background: var(--warm-cream); }
+  .apology .s-eyebrow { color: var(--lavender); }
+  .sorry-intro {
+    margin-top: 1.8rem;
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(1rem, 3.5vw, 1.22rem);
+    line-height: 2; font-style: italic; font-weight: 300;
+    color: var(--text-mid); padding: 1.5rem 1.3rem;
+    background: linear-gradient(135deg, #f4f0ff, #fff0f5);
+    border-radius: 20px; border-left: 4px solid var(--lavender);
+  }
+
+  /* ── CLOSING ── */
+  .closing-msg {
+    background: linear-gradient(160deg, #1e0e18 0%, #2a1030 60%, #1a1a2e 100%);
+    overflow: hidden; position: relative;
+  }
+  .closing-msg::before {
+    content: ''; position: absolute; inset: 0;
+    background:
+      radial-gradient(ellipse at 50% 40%, rgba(212,96,122,0.15) 0%, transparent 60%),
+      radial-gradient(ellipse at 20% 80%, rgba(155,89,182,0.12) 0%, transparent 50%),
+      radial-gradient(ellipse at 80% 20%, rgba(232,192,106,0.08) 0%, transparent 45%);
+    pointer-events: none;
+  }
+  .closing-msg .s-inner {
+    text-align: center; position: relative; z-index: 1;
+    padding-bottom: max(4rem, env(safe-area-inset-bottom, 4rem));
+  }
+  .closing-star {
+    display: block; font-size: clamp(2.8rem, 10vw, 4rem); margin-bottom: 1.3rem;
+    animation: starPulse 2.5s ease-in-out infinite;
+    filter: drop-shadow(0 0 20px rgba(232,192,106,0.6));
+  }
+  @keyframes starPulse { 0%,100%{transform:scale(1) rotate(-5deg);} 50%{transform:scale(1.2) rotate(5deg);} }
+  .closing-msg .s-title { color: white; }
+  .closing-text {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(1rem, 3.8vw, 1.4rem);
+    line-height: 2.1; font-style: italic; font-weight: 300;
+    color: rgba(255,255,255,0.82);
+    max-width: min(600px, 90vw); margin: 0 auto 1.5rem;
+  }
+  .closing-sign {
+    display: block; margin-top: 1.5rem;
+    font-family: 'Dancing Script', cursive;
+    font-size: clamp(1.2rem, 5vw, 2rem);
+    background: linear-gradient(90deg, var(--gold), var(--soft-rose));
+    -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+    animation: mushBob 4s ease-in-out infinite;
+  }
+
+  /* ── POP BURST ── */
+  .pop {
+    position: fixed; pointer-events: none; z-index: 9999;
+    font-size: 1.5rem; animation: popAway 0.9s ease forwards;
+  }
+  @keyframes popAway {
+    0%  { opacity:1; transform:scale(0) translateY(0); }
+    45% { opacity:1; transform:scale(1.6) translateY(-22px); }
+    100%{ opacity:0; transform:scale(0.8) translateY(-60px); }
+  }
+
+  /* ── SCROLL REVEAL ── */
+  .reveal { opacity:0; transform:translateY(28px); transition: opacity 0.85s ease, transform 0.85s ease; }
+  .reveal.visible { opacity:1; transform:translateY(0); }
+</style>
+</head>
+<body>
+
+<div id="floaties"></div>
+
+<!-- HERO -->
+<section class="hero">
+  <span class="mushroom-icon" onclick="popBurst(event, 12)">🍄</span>
+  <span class="hero-label">✨ A Message From the Heart ✨</span>
+  <h1>For My Sweet Little Mushroom</h1>
+  <div class="hero-name-tag">
+    <span class="mush">🍄</span>
+    <span class="name-text">Sweet Little Mushroom</span>
+    <span class="mush">💕</span>
+  </div>
+  <p class="hero-sub">
+    You are not just anyone to me.<br>
+    You are one of the most important people in my life —<br>
+    and it is time I said it properly.
+  </p>
+  <span class="scroll-cue">🌸</span>
+</section>
+
+<!-- GRATITUDE -->
+<section class="gratitude">
+  <div class="s-inner">
+    <span class="s-eyebrow reveal">💗 With the Deepest Gratitude</span>
+    <h2 class="s-title reveal">Thank You, Sweet Little Mushroom</h2>
+    <p class="s-body reveal">
+      Some people enter your life quietly — no grand entrance, no fanfare —
+      and yet somehow they become the person you cannot imagine living without.
+      That is you. You have given me so much without ever keeping score.
+      Your kindness, your patience, your presence — I want you to know
+      that none of it has gone unseen. I see it all. Every single bit.
+      And my heart is full because of you.
+    </p>
+
+    <div class="three-pillars">
+      <div class="pillar reveal">
+        <span class="pillar-icon">💪</span>
+        <h3>You Always Supported Me</h3>
+        <p>When I doubted myself, you were the quiet voice saying "you can do this." You never gave up on me — even when I nearly gave up on myself. That kind of loyalty is rare, and I treasure it more than words can say.</p>
+      </div>
+      <div class="pillar reveal">
+        <span class="pillar-icon">😊</span>
+        <h3>You Made Me Smile Every Day</h3>
+        <p>Even on the days when nothing else could, you found a way. A small thing you said, a silly moment, your warmth — you turned ordinary days into ones I actually looked forward to. You are my favourite reason to smile.</p>
+      </div>
+      <div class="pillar reveal">
+        <span class="pillar-icon">🤍</span>
+        <h3>You Were There in Hard Times</h3>
+        <p>You did not disappear when things got heavy. You stayed. You sat with me in the difficult moments without making me feel like a burden. That is not something everyone can do — and it means everything to me.</p>
+      </div>
+    </div>
+
+    <div class="deep-note reveal">
+      <p>
+        You might not realize what those three things mean together —
+        but they are the exact things that have held me together on my worst days.
+        You showed up with your support when I was falling, your smile when I was drowning,
+        and your presence when I felt completely alone.
+        You are not just important to me, Sweet little mushroom —
+        you are <em>irreplaceable</em> to me.
+        There is truly no one else like you in my world, and I am so grateful
+        every single day that I get to have you in my life.
+      </p>
+      <span class="note-sign">— From someone who notices everything you do 🍄</span>
+    </div>
+  </div>
+</section>
+
+<!-- APOLOGY -->
+<section class="apology">
+  <div class="s-inner">
+    <span class="s-eyebrow reveal">🙏 With a Heavy & Honest Heart</span>
+    <h2 class="s-title reveal">I Am So Sorry, Sweet Little Mushroom</h2>
+    <div class="sorry-intro reveal">
+      Saying thank you without saying sorry would not be honest.
+      And you deserve all of my honesty. I have not always been the person
+      you deserved to have beside you. I have made mistakes — some small,
+      some not so small — and I am ashamed of all of them.
+      You gave me so much, and I did not always give you back what you deserved.
+      I need you to know: I am deeply, genuinely sorry.
+    </div>
+  </div>
+</section>
+
+<!-- CLOSING -->
+<section class="closing-msg">
+  <div class="s-inner">
+    <span class="closing-star reveal">⭐</span>
+    <h2 class="s-title reveal">Keep Shining, My Little Star</h2>
+    <p class="closing-text reveal">
+      Even if I am not beside you someday —
+      I will always be watching over you, quietly,
+      in ways you may not even notice.
+      I will always keep a place for you in my heart,
+      no matter how far apart we are.
+      And from wherever I may be,
+      I will always, always wish for your happiness and your success —
+      every single day, without exception.
+    </p>
+    <span class="closing-sign reveal">🍄 &nbsp;—&nbsp; Always yours, watching from afar &nbsp;🌟</span>
+  </div>
+</section>
+
+<script>
+  /* Floating emojis — fewer on mobile for performance */
+  const icons = ['🍄','🌸','💗','✨','🌿','💕','🍀','🌷','💫','🌱','🤍'];
+  const fc = document.getElementById('floaties');
+  const total = window.innerWidth < 600 ? 14 : 28;
+  for (let i = 0; i < total; i++) {
+    const el = document.createElement('div');
+    el.className = 'floatie';
+    el.textContent = icons[Math.floor(Math.random() * icons.length)];
+    el.style.cssText = `left:${Math.random()*100}vw;font-size:${0.7+Math.random()*0.8}rem;animation-duration:${9+Math.random()*12}s;animation-delay:${Math.random()*15}s;`;
+    fc.appendChild(el);
+  }
+
+  /* Scroll reveal */
+  const ro = new IntersectionObserver(entries => {
+    entries.forEach((e, i) => {
+      if (e.isIntersecting) setTimeout(() => e.target.classList.add('visible'), i * 60);
+    });
+  }, { threshold: 0.08 });
+  document.querySelectorAll('.reveal').forEach(el => ro.observe(el));
+
+  /* Pop burst — works on both touch & mouse */
+  const popEmojis = ['💗','💕','✨','🍄','🌸','💖','🌿','💫','🤍','🌷'];
+
+  function spawnPop(x, y, n) {
+    for (let i = 0; i < n; i++) {
+      const d = document.createElement('div');
+      d.className = 'pop';
+      d.textContent = popEmojis[Math.floor(Math.random() * popEmojis.length)];
+      d.style.cssText = `left:${x+(Math.random()-.5)*50}px;top:${y+(Math.random()-.5)*50}px;animation-delay:${i*0.06}s;`;
+      document.body.appendChild(d);
+      setTimeout(() => d.remove(), 1100);
+    }
+  }
+
+  function popBurst(e, n = 12) {
+    const x = e.clientX ?? e.touches?.[0]?.clientX ?? innerWidth/2;
+    const y = e.clientY ?? e.touches?.[0]?.clientY ?? innerHeight/2;
+    spawnPop(x, y, n);
+  }
+
+  let lastT = 0;
+  document.addEventListener('touchstart', e => {
+    if (Date.now() - lastT < 300) return;
+    lastT = Date.now();
+    spawnPop(e.touches[0].clientX, e.touches[0].clientY, 4);
+  }, { passive: true });
+
+  document.addEventListener('click', e => {
+    if (Date.now() - lastT < 350) return;
+    spawnPop(e.clientX, e.clientY, 4);
+  });
+</script>
+</body>
+</html>
